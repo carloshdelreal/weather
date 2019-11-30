@@ -1,3 +1,3 @@
 window.onload = () => {
-  document.querySelector('body').innerText = 'First Commit';
+  document.querySelector('.row').innerText = 'First Commit';
 };
