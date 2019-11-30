@@ -27,7 +27,9 @@ This project was created by:
 
 # Live Version
 
-You can find the development's live version of this project [here]()
+You can find the development's live version of this project [here](https://raw.githack.com/carloshdelreal/weather/weather/dist/index.html)
+
+You can find the stable version of this project [here](https://carloshdelreal.github.io/weather/dist/index.html)
 
 # License
 
