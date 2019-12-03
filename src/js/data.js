@@ -1,13 +1,19 @@
-export default async function getStationData() {
-  const query = 'query=bogota';
-  const locType = 'locationType=city';
-  const units = 'units=e';
-  const apikey = 'apiKey=19906d8aa09345c5906d8aa09335c57f';
+export default async function getStationData(city, unit) {
+  const query = `q=${city}`;
+  let units = 'units=';
+  if (unit === 0) {
+    units += 'metric';
+  } else {
+    units += 'imperial';
+  }
+
+  const apikey = 'appid=117282e70ab56637f9fbaa2e9518192a';
   const response = await fetch(
-    `https://api.weather.com/v3/location/search?${query}&${locType}&language=en-US&format=json&${apikey}`
-    //`https://api.weather.com/v3/location/search?query=atlanta&locationType=locid&language=en-US&format=json&${apikey}`
+    `http://api.openweathermap.org/data/2.5/weather?${query}&${apikey}&${units}`,
+    { mode: 'cors' }
   );
   const myJson = await response.json();
-  console.log(JSON.stringify(myJson));
-  return myJson;
+
+  console.log(myJson);
+  return { city: myJson.name, country: myJson.sys.country, main: myJson.main };
 }

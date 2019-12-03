@@ -14,7 +14,8 @@
     "sourceType": "module"
   },
   "rules": {
-    "space-before-function-paren": "error",
-    "comma-dangle": ["error", "never"]
+    "space-before-function-paren": "off",
+    "comma-dangle": ["error", "never"],
+    "object-curly-newline": "off"
   }
 }

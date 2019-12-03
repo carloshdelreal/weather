@@ -14,14 +14,17 @@ export default function createForm() {
 
   // priority
   const fieldTemperature = createElem('div', '', ['form-group', 'bullets']);
+  const bullC = bulletField('°c');
+  const bullF = bulletField('°f');
+  bullC.firstChild.checked = true;
 
-  fieldTemperature.appendChild(bulletField('°c'));
-  fieldTemperature.appendChild(bulletField('°f'));
+  fieldTemperature.appendChild(bullC);
+  fieldTemperature.appendChild(bullF);
 
   // Put everything together
   formWrapper.appendChild(fieldCity);
   formWrapper.appendChild(fieldTemperature);
   formContainer.appendChild(formWrapper);
 
-  return formContainer;
+  return { formContainer, bullC, bullF, cityInput };
 }
