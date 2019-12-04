@@ -17,7 +17,7 @@ async function dataGetter(city, unit) {
   return { city: myJson.name, country: myJson.sys.country, main: myJson.main };
 }
 
-export default (DOM) => {
+export default function Weather(DOM) {
   const inputCityDOM = DOM.cityInput;
   const inputBulletCDOM = DOM.bullC.firstChild;
   const {
