@@ -11,13 +11,13 @@ async function dataGetter(city, unit) {
   try {
     const response = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?${query}&${apikey}&${units}`,
-      { mode: 'cors' }
+      { mode: 'cors' },
     );
     const myJson = await response.json();
     return {
       city: myJson.name,
       country: myJson.sys.country,
-      main: myJson.main
+      main: myJson.main,
     };
   } catch (err) {
     return null;
@@ -25,8 +25,7 @@ async function dataGetter(city, unit) {
 }
 
 function Weather(DOM) {
-  const inputCityDOM = DOM.cityInput;
-  const cityValidation = DOM.cityValidation;
+  const { cityValidation, cityInputDOM } = DOM;
   const inputBulletCDOM = DOM.bullC.firstChild;
   const {
     city,
@@ -35,21 +34,21 @@ function Weather(DOM) {
     pressure,
     humidity,
     tempMin,
-    tempMax
+    tempMax,
   } = DOM.cardFields;
   let tempUnits = 0; // 0 metric 1 imperial
 
   const formDataValid = () => {
-    if (inputCityDOM.value === '') {
-      inputCityDOM.classList.add('is-invalid');
+    if (cityInputDOM.value === '') {
+      cityInputDOM.classList.add('is-invalid');
       return false;
     }
-    inputCityDOM.classList.remove('is-invalid');
+    cityInputDOM.classList.remove('is-invalid');
     return true;
   };
 
   const getFormData = () => {
-    const cityInput = inputCityDOM.value;
+    const cityInput = cityInputDOM.value;
 
     if (inputBulletCDOM.checked) {
       tempUnits = 0;
@@ -57,10 +56,8 @@ function Weather(DOM) {
       tempUnits = 1;
     }
     if (formDataValid()) {
-      inputCityDOM.value = '';
-
       return {
-        cityInput
+        cityInput,
       };
     }
     return null;
@@ -84,20 +81,27 @@ function Weather(DOM) {
 
   const search = () => {
     const formData = getFormData();
-    dataGetter(formData.cityInput, tempUnits).then((promiseData) => {
-      if (promiseData == null) {
-        inputCityDOM.classList.add('is-invalid');
-        cityValidation.innerText = `${formData.cityInput}: City not Founded`;
-      } else {
-        inputCityDOM.classList.remove('is-invalid');
-        cityValidation.innerText = '';
-        updateConditions(promiseData);
-      }
-    });
+    if (formData == null) {
+      cityInputDOM.classList.add('is-invalid');
+      cityValidation.innerText = 'enter a city';
+    } else {
+      cityInputDOM.classList.remove('is-invalid');
+      cityValidation.innerText = '';
+      dataGetter(formData.cityInput, tempUnits).then((promiseData) => {
+        if (promiseData == null) {
+          cityInputDOM.classList.add('is-invalid');
+          cityValidation.innerText = `${formData.cityInput}: City not Founded`;
+        } else {
+          cityInputDOM.classList.remove('is-invalid');
+          cityValidation.innerText = '';
+          updateConditions(promiseData);
+        }
+      });
+    }
   };
 
   return {
-    search
+    search,
   };
 }
 export default Weather;

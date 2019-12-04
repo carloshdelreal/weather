@@ -1,7 +1,6 @@
 import { createDiv } from './elmcreator';
 import createForm from './forms';
 import weatherCard from './weatherCard';
-// import domListeners from './domListeners';
 
 export default function load() {
   // Content
@@ -16,6 +15,5 @@ export default function load() {
   column.appendChild(form.formContainer);
   column.appendChild(card.cardsContainer);
 
-  // domListeners();
   return form;
 }

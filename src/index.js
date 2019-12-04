@@ -12,4 +12,13 @@ window.onload = () => {
       weatherObj.search();
     }
   });
+  const radioF = document.querySelector('#inlineRadio°f');
+  radioF.addEventListener('input', () =>{
+    weatherObj.search();
+  })
+
+  const radioC = document.querySelector('#inlineRadio°c');
+  radioC.addEventListener('input', () =>{
+    weatherObj.search();
+  })
 };
