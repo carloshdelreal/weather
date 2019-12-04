@@ -3,7 +3,9 @@ import getData from './data';
 export default (DOM) => {
   const inputCityDOM = DOM.cityInput;
   const inputBulletCDOM = DOM.bullC.firstChild;
-  const { city, country, temp, pressure, humidity, tempMin, tempMax } = DOM.cardFields;
+  const {
+    city, country, temp, pressure, humidity, tempMin, tempMax
+  } = DOM.cardFields;
   let tempUnits = 0; // 0 metric 1 imperial
 
   const formDataValid = () => {

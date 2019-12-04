@@ -1,4 +1,4 @@
-export default async function getStationData(city, unit) {
+export default async function (city, unit) {
   const query = `q=${city}`;
   let units = 'units=';
   if (unit === 0) {
