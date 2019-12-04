@@ -15,7 +15,6 @@
   },
   "rules": {
     "space-before-function-paren": "off",
-    "comma-dangle": ["error", "never"],
     "object-curly-newline": "off"
   }
 }

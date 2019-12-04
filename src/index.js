@@ -1,6 +1,6 @@
 import './style.scss';
 import pageLoad from './js/pageload';
-import { Weather } from './js/weatherApp';
+import Weather from './js/weatherApp';
 
 window.onload = () => {
   const weather = Weather(pageLoad());

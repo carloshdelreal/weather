@@ -34,6 +34,6 @@ export default () => {
 
   return {
     cardsContainer,
-    cardFields: { city, country, temp, pressure, humidity, tempMin, tempMax }
+    cardFields: { city, country, temp, pressure, humidity, tempMin, tempMax },
   };
 };

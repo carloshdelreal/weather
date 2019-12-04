@@ -1,13 +1,10 @@
 import getData from './data';
 
-const Weather = (DOM) => {
+export default (DOM) => {
   const inputCityDOM = DOM.cityInput;
   const inputBulletCDOM = DOM.bullC.firstChild;
-  const cardFields = DOM.cardFields;
+  const { city, country, temp, pressure, humidity, tempMin, tempMax } = DOM.cardFields;
   let tempUnits = 0; // 0 metric 1 imperial
-  const previousSearchesList = [];
-
-  const update = () => {};
 
   const formDataValid = () => {
     if (inputCityDOM.value === '') {
@@ -19,7 +16,7 @@ const Weather = (DOM) => {
   };
 
   const getFormData = () => {
-    const city = inputCityDOM.value;
+    const cityInput = inputCityDOM.value;
 
     if (inputBulletCDOM.checked) {
       tempUnits = 0;
@@ -30,7 +27,7 @@ const Weather = (DOM) => {
       inputCityDOM.value = '';
 
       return {
-        city
+        cityInput,
       };
     }
     return null;
@@ -43,26 +40,23 @@ const Weather = (DOM) => {
     } else {
       tempSuffix = ' °F';
     }
-    cardFields.city.innerText = data.city;
-    cardFields.country.innerText = data.country;
-    cardFields.temp.innerText = data.main.temp + tempSuffix;
-    cardFields.pressure.innerText = data.main.pressure;
-    cardFields.humidity.innerText = data.main.humidity + ' %';
-    cardFields.tempMin.innerText = data.main.temp_min + tempSuffix;
-    cardFields.tempMax.innerText = data.main.temp_max + tempSuffix;
+    city.innerText = data.city;
+    country.innerText = data.country;
+    temp.innerText = data.main.temp + tempSuffix;
+    pressure.innerText = data.main.pressure;
+    humidity.innerText = `${data.main.humidity} %`;
+    tempMin.innerText = data.main.temp_min + tempSuffix;
+    tempMax.innerText = data.main.temp_max + tempSuffix;
   };
 
   const search = () => {
     const formData = getFormData();
-    getData(formData.city, tempUnits).then((data) => {
+    getData(formData.cityInput, tempUnits).then((data) => {
       updateConditions(data);
     });
   };
 
   return {
-    update,
-    search
+    search,
   };
 };
-
-export { Weather };

@@ -26,5 +26,7 @@ export default function createForm() {
   formWrapper.appendChild(fieldTemperature);
   formContainer.appendChild(formWrapper);
 
-  return { formContainer, bullC, bullF, cityInput };
+  return {
+    formContainer, bullC, bullF, cityInput,
+  };
 }
