@@ -20,7 +20,7 @@ async function dataGetter(city, unit) {
   }
 }
 
-export default function Weather(DOM) {
+function Weather(DOM) {
   const inputCityDOM = DOM.cityInput;
   const cityValidation = DOM.cityValidation;
   const inputBulletCDOM = DOM.bullC.firstChild;
@@ -96,3 +96,5 @@ export default function Weather(DOM) {
     search,
   };
 }
+
+export default Weather;
