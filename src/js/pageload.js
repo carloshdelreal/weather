@@ -14,8 +14,7 @@ export default function load() {
   // append created DOM objects
   content.appendChild(column);
   column.appendChild(form.formContainer);
-  column.appendChild(card.container);
-  console.log(form);
+  column.appendChild(card.cardsContainer);
 
   // domListeners();
   return form;

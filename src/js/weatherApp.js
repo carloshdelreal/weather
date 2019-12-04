@@ -37,13 +37,19 @@ const Weather = (DOM) => {
   };
 
   const updateConditions = (data) => {
-    cardFields.title.innerText = data.city;
+    let tempSuffix = '';
+    if (tempUnits === 0) {
+      tempSuffix = ' °C';
+    } else {
+      tempSuffix = ' °F';
+    }
+    cardFields.city.innerText = data.city;
     cardFields.country.innerText = data.country;
-    cardFields.temp.innerText = data.main.temp;
+    cardFields.temp.innerText = data.main.temp + tempSuffix;
     cardFields.pressure.innerText = data.main.pressure;
-    cardFields.humidity.innerText = data.main.humidity;
-    cardFields.tempMin.innerText = data.main.temp_min;
-    cardFields.tempMax.innerText = data.main.temp_max;
+    cardFields.humidity.innerText = data.main.humidity + ' %';
+    cardFields.tempMin.innerText = data.main.temp_min + tempSuffix;
+    cardFields.tempMax.innerText = data.main.temp_max + tempSuffix;
   };
 
   const search = () => {

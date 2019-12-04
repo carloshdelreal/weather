@@ -14,6 +14,5 @@ export default async function getStationData(city, unit) {
   );
   const myJson = await response.json();
 
-  console.log(myJson);
   return { city: myJson.name, country: myJson.sys.country, main: myJson.main };
 }
