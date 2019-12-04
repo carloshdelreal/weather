@@ -1,9 +1,9 @@
 import './style.scss';
 import pageLoad from './js/pageload';
-import Weather from './js/weatherApp';
+import appWeather from './js/weatherApp';
 
 window.onload = () => {
-  const weather = Weather(pageLoad());
+  const weather = appWeather(pageLoad());
 
   const cityField = document.querySelector('#cityForm');
   cityField.addEventListener('keypress', (e) => {
