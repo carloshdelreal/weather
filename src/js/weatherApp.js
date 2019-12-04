@@ -1,10 +1,10 @@
-import getData from './data';
+import data from './data';
 
 export default (DOM) => {
   const inputCityDOM = DOM.cityInput;
   const inputBulletCDOM = DOM.bullC.firstChild;
   const {
-    city, country, temp, pressure, humidity, tempMin, tempMax
+    city, country, temp, pressure, humidity, tempMin, tempMax,
   } = DOM.cardFields;
   let tempUnits = 0; // 0 metric 1 imperial
 
@@ -35,26 +35,26 @@ export default (DOM) => {
     return null;
   };
 
-  const updateConditions = (data) => {
+  const updateConditions = (conditions) => {
     let tempSuffix = '';
     if (tempUnits === 0) {
       tempSuffix = ' °C';
     } else {
       tempSuffix = ' °F';
     }
-    city.innerText = data.city;
-    country.innerText = data.country;
-    temp.innerText = data.main.temp + tempSuffix;
-    pressure.innerText = data.main.pressure;
-    humidity.innerText = `${data.main.humidity} %`;
-    tempMin.innerText = data.main.temp_min + tempSuffix;
-    tempMax.innerText = data.main.temp_max + tempSuffix;
+    city.innerText = conditions.city;
+    country.innerText = conditions.country;
+    temp.innerText = conditions.main.temp + tempSuffix;
+    pressure.innerText = conditions.main.pressure;
+    humidity.innerText = `${conditions.main.humidity} %`;
+    tempMin.innerText = conditions.main.temp_min + tempSuffix;
+    tempMax.innerText = conditions.main.temp_max + tempSuffix;
   };
 
   const search = () => {
     const formData = getFormData();
-    getData(formData.cityInput, tempUnits).then((data) => {
-      updateConditions(data);
+    data(formData.cityInput, tempUnits).then((promiseData) => {
+      updateConditions(promiseData);
     });
   };
 
