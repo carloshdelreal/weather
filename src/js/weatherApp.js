@@ -8,20 +8,30 @@ async function dataGetter(city, unit) {
   }
 
   const apikey = 'appid=117282e70ab56637f9fbaa2e9518192a';
-  const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?${query}&${apikey}&${units}`,
-    { mode: 'cors' }
-  );
-  const myJson = await response.json();
-
-  return { city: myJson.name, country: myJson.sys.country, main: myJson.main };
+  try {
+    const response = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?${query}&${apikey}&${units}`,
+      { mode: 'cors' },
+    );
+    const myJson = await response.json();
+    return { city: myJson.name, country: myJson.sys.country, main: myJson.main };
+  } catch (err) {
+    return null;
+  }
 }
 
 export default function Weather(DOM) {
   const inputCityDOM = DOM.cityInput;
+  const cityValidation = DOM.cityValidation;
   const inputBulletCDOM = DOM.bullC.firstChild;
   const {
-    city, country, temp, pressure, humidity, tempMin, tempMax,
+    city,
+    country,
+    temp,
+    pressure,
+    humidity,
+    tempMin,
+    tempMax,
   } = DOM.cardFields;
   let tempUnits = 0; // 0 metric 1 imperial
 
@@ -71,11 +81,18 @@ export default function Weather(DOM) {
   const search = () => {
     const formData = getFormData();
     dataGetter(formData.cityInput, tempUnits).then((promiseData) => {
-      updateConditions(promiseData);
+      if (promiseData == null) {
+        inputCityDOM.classList.add('is-invalid');
+        cityValidation.innerText = 'City not Founded';
+      } else {
+        inputCityDOM.classList.remove('is-invalid');
+        cityValidation.innerText = '';
+        updateConditions(promiseData);
+      }
     });
   };
 
   return {
     search,
   };
-};
+}

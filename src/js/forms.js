@@ -9,8 +9,10 @@ export default function createForm() {
   // City
   const fieldCity = createDiv(['form-group']);
   const cityInput = createElem('input', 'cityForm', ['city', 'form-control']);
+  const cityValidation = createElem('div', '', ['cityValidation']);
   cityInput.placeholder = 'Type a city: Bogota';
   fieldCity.appendChild(cityInput);
+  fieldCity.appendChild(cityValidation);
 
   // priority
   const fieldTemperature = createElem('div', '', ['form-group', 'bullets']);
@@ -27,6 +29,6 @@ export default function createForm() {
   formContainer.appendChild(formWrapper);
 
   return {
-    formContainer, bullC, bullF, cityInput,
+    formContainer, bullC, bullF, cityInput, cityValidation,
   };
 }
