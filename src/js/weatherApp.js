@@ -83,7 +83,7 @@ export default function Weather(DOM) {
     dataGetter(formData.cityInput, tempUnits).then((promiseData) => {
       if (promiseData == null) {
         inputCityDOM.classList.add('is-invalid');
-        cityValidation.innerText = 'City not Founded';
+        cityValidation.innerText = `${formData.cityInput}: City not Founded`;
       } else {
         inputCityDOM.classList.remove('is-invalid');
         cityValidation.innerText = '';
