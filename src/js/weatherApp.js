@@ -11,10 +11,14 @@ async function dataGetter(city, unit) {
   try {
     const response = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?${query}&${apikey}&${units}`,
-      { mode: 'cors' },
+      { mode: 'cors' }
     );
     const myJson = await response.json();
-    return { city: myJson.name, country: myJson.sys.country, main: myJson.main };
+    return {
+      city: myJson.name,
+      country: myJson.sys.country,
+      main: myJson.main
+    };
   } catch (err) {
     return null;
   }
@@ -31,7 +35,7 @@ function Weather(DOM) {
     pressure,
     humidity,
     tempMin,
-    tempMax,
+    tempMax
   } = DOM.cardFields;
   let tempUnits = 0; // 0 metric 1 imperial
 
@@ -56,7 +60,7 @@ function Weather(DOM) {
       inputCityDOM.value = '';
 
       return {
-        cityInput,
+        cityInput
       };
     }
     return null;
@@ -93,8 +97,7 @@ function Weather(DOM) {
   };
 
   return {
-    search,
+    search
   };
 }
-
 export default Weather;
