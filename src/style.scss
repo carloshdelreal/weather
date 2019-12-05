@@ -1,0 +1,26 @@
+@import '~bootstrap/scss/bootstrap/';
+
+.formWeather {
+  margin-top: 15px;
+}
+.formpop {
+  background-color: #fefefe;
+  margin: 20px, 0px, 20px, 0px;
+  padding: 20px;
+  border: 1px solid #888;
+}
+.weatherCards {
+  background-color: white;
+  border: 1px solid #888;
+  padding: 10px;
+}
+h5,
+p {
+  padding-left: 5px;
+}
+
+.cityValidation{
+  color: red;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 0.7em;
+}

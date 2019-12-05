@@ -14,6 +14,8 @@
     "sourceType": "module"
   },
   "rules": {
-    "space-before-function-paren": "error"
+    "space-before-function-paren": "off",
+    "object-curly-newline": "off",
+    "import/no-named-as-default": "off"
   }
 }
