@@ -45,3 +45,4 @@ All the source code in the [The Odin Project](https://www.theodinproject.com/cou
 - npm install webpack webpack-cli --save-dev
 - npx webpack
 - npm run watch
+- npm run lint
